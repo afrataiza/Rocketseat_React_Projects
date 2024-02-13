@@ -5,6 +5,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --white: #fff;
+  --neutral: #fafafa;
   --gray-100: #e1e1e6;
   --gray-300: #c4c4cc;
   --gray-400: #8d8d99;
@@ -12,7 +13,8 @@
   --gray-700: #29292e;
   --gray-800: #202024;
   --gray-900: #121214;
-  --green-500: #00875f;
+  --purple-600: #9333ea;
+  --purple-500: #a855f7;
 }
 
 * {
@@ -27,7 +29,9 @@ body {
 }
 
 body, input, button, textarea {
-  font: 400 1rem Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 @media (prefers-color-scheme: light) {
