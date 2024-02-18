@@ -6,6 +6,7 @@
   -moz-osx-font-smoothing: grayscale;
   --white: #fff;
   --neutral: #fafafa;
+  --gray-50: #f0f0f5;
   --gray-100: #e1e1e6;
   --gray-300: #c4c4cc;
   --gray-400: #8d8d99;
@@ -15,6 +16,12 @@
   --gray-900: #121214;
   --purple-600: #9333ea;
   --purple-500: #a855f7;
+  --red-500: #f75a68;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--purple-600);
 }
 
 * {
