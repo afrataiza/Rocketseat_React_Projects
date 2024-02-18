@@ -1,0 +1,147 @@
+.post {
+  background: var(--gray-800);
+  border-radius: 8px;
+  padding: 2.5rem;
+}
+
+.post + .post {
+  margin-top: 2rem;
+}
+
+.content {
+  margin-top: 1.5rem;
+  line-height: 1.6;
+  color: var(--gray-300);
+}
+
+.content p {
+  margin: 1rem;
+}
+
+.content a {
+  color: var(--purple-600);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.content a:hover {
+  color: var(--purple-500);
+}
+
+.post > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post > header time {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorInfo strong {
+  color: var(--gray-100);
+  display: block;
+  line-height: 1.6;
+}
+
+.authorInfo span {
+  font-size: 0.875rem;
+  color: var(--gray-300);
+  display: block;
+  line-height: 1.6;
+}
+
+.commentForm {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-600);
+  width: 100%;
+}
+
+.commentForm > strong {
+  color: var(--gray-100);
+  line-height: 1.6;
+}
+
+.commentForm > textarea {
+  width: 100%;
+  background: var(--gray-900);
+  border: 0;
+  color: var(--gray-100);
+  resize: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  height: 6rem;
+  line-height: 1.4;
+}
+
+.commentForm > footer {
+  visibility: hidden;
+  max-height: 0;
+}
+
+.commentForm:focus-within footer{
+  visibility: visible;
+  max-height: none;
+}
+
+.commentForm button[type="submit"] {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--purple-600);
+  color: var(--white);
+  font-weight: bold;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.commentForm button[type="submit"]:hover {
+  background: var(--purple-500);
+}
+
+.commentList {
+  margin-top: 2rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .post {
+    background: var(--neutral);
+  }
+
+  .authorInfo strong {
+    color: var(--gray-600);
+  }
+
+  .authorInfo span {
+    color: var(--gray-400);
+  }
+
+  .content {
+    color: var(--gray-600);
+  }
+
+  .commentForm > strong {
+    color: var(--gray-600);
+  }
+
+  .commentForm > textarea {
+    background: var(--gray-50);
+    color: var(--gray-900);
+  }
+
+  .commentForm {
+    border-top: 1px solid var(--gray-300);
+  }
+
+
+}
