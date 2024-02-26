@@ -3,6 +3,8 @@ import styles from './Tasks.module.css';
 import { Task } from './Task';
 import { Empty } from './Empty';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Task {
   id: number;
@@ -21,13 +23,12 @@ export function Tasks() {
     if (storegedTasks !== null) {
       setTasks(JSON.parse(storegedTasks));
     }
-  }
-  , []);
+  }, []);
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const input = event.currentTarget.querySelector('input');
-    
+
     if (input !== null && input.value !== '') {
       const newTask = {
         id: tasks.length + 1,
@@ -38,52 +39,57 @@ export function Tasks() {
           month: 'numeric',
           year: 'numeric',
           hour: 'numeric',
-          minute: 'numeric'
-          })
+          minute: 'numeric',
+        }),
       };
       setTasks((prevTasks) => [...prevTasks, newTask]);
       localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]));
       input.value = '';
+      setIsAddTaskDisabled(true);
+      toast.success('Tarefa criada com sucesso!', {});
     }
-  }
+  };
 
   const handleRemoveTask = (id: number) => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-  }
+    toast.error('Tarefa removida com sucesso!', {});
+  };
 
   const handleToggleTask = (id: number) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
         return {
           ...task,
-          isCompleted: !task.isCompleted
+          isCompleted: !task.isCompleted,
         };
       }
       return task;
     });
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-  }
+  };
 
   useEffect(() => {
     const filteredTasks = tasks.filter((task) => task.isCompleted).length;
     setCompletedTasks(filteredTasks);
   }, [tasks]);
 
+
   return (
     <div className={styles.tasks}>
-      <form className={styles.addTask} onSubmit={handleAddTask}>
+      <form
+        className={styles.addTask}
+        onSubmit={handleAddTask}>
         <input
           type="text"
           placeholder="Adicionar nova tarefa"
           onChange={(event) => setIsAddTaskDisabled(event.target.value === '')}
         />
-        <button 
-        type="submit"
-        disabled={isAddTaskDisabled}
-        >
+        <button
+          type="submit"
+          disabled={isAddTaskDisabled}>
           Criar
           <PlusCircle size={16} />
         </button>
@@ -98,7 +104,9 @@ export function Tasks() {
           </p>
         </div>
         <div className={styles.tasksContainer}>
-          {tasks.length === 0 ? <Empty /> : (
+          {tasks.length === 0 ? (
+            <Empty />
+          ) : (
             tasks.map((task) => (
               <Task
                 key={task.id}
@@ -113,6 +121,15 @@ export function Tasks() {
           )}
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover
+        pauseOnFocusLoss
+        draggable
+        theme='dark'
+      />
     </div>
   );
 }
